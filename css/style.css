@@ -574,3 +574,32 @@
 .footer .copyright a:hover {
     color: var(--primary);
 }
+
+
+
+
+
+/* Additional CSS */
+
+.navbar-nav ul li {
+    list-style: none;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* Footer */
+.text-make-white h5 {
+    color: white;
+}

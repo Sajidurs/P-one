@@ -7,7 +7,7 @@
  * @since 1.00
  */
 
-
+require_once(get_theme_file_path("/inc/class-wp-bootstrap-navwalker.php"));
 
 
 function one_setup() {
@@ -38,41 +38,119 @@ function one_setup() {
 add_action('after_setup_theme', 'one_setup');
 
 // Enqueing Files
-function one_assets() {
-    
-    //Calling From Web
-    wp_enqueue_style( 'font-opensans', '//fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap', array(), '1.0.0', 'all' );
-    wp_enqueue_style( 'font-domain1', '//fonts.googleapis.com', array(), '1.0.0', 'all' );
-    wp_enqueue_style( 'font-domain2', '//fonts.gstatic.com', array(), '1.0.0', 'all' );
-    wp_enqueue_style( 'fontawesome-1', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css', array(), '1.0.0', 'all' );
-    wp_enqueue_style( 'fontawesome-2', '//cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css', array(), '1.0.0', 'all' );
+function one_enqueue(){
+	wp_enqueue_style('google_font', '//fonts.googleapis.com/css2?family=Open+Sans:wght@400;500&family=Roboto:wght@500;700;900&display=swap', array(), '1.0.0', 'all' );
+	wp_enqueue_style('all_min_css', '//cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css', array(), '1.0.0', 'all' );
 
-    // Calling From Local
-    wp_enqueue_style( 'main-css', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '1.0.0', 'all');
-    wp_enqueue_style( 'lib-css', get_template_directory_uri() . '/lib/animate/animate.min.css', array(), '1.0.0', 'all');
-    wp_enqueue_style( 'owlcarousel-css', get_template_directory_uri() . '/lib/owlcarousel/assets/owl.carousel.min.css', array(), '1.0.0', 'all');
-    wp_enqueue_style( 'owlcarousel-css2', get_template_directory_uri() . '/lib/owlcarousel/assets/owl.carousel.css', array(), '1.0.0', 'all');
-    wp_enqueue_style( 'owlcarousel-css3', get_template_directory_uri() . '/lib/owlcarousel/assets/owl.theme.default.css', array(), '1.0.0', 'all');
-    wp_enqueue_style( 'owlcarousel-css4', get_template_directory_uri() . '/lib/owlcarousel/assets/owl.theme.default.min.css', array(), '1.0.0', 'all');
-    wp_enqueue_style( 'owlcarousel-css5', get_template_directory_uri() . '/lib/owlcarousel/assets/owl.theme.green.css', array(), '1.0.0', 'all');
-    wp_enqueue_style( 'owlcarousel-css6', get_template_directory_uri() . '/lib/owlcarousel/assets/owl.theme.green.min.css', array(), '1.0.0', 'all');
+	wp_enqueue_style('bootstrap_icon', '//cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css', array(), '1.0.0', 'all' );
 
-    wp_enqueue_style( 'lightbox-css', get_template_directory_uri() . '/lib/lightbox/css/lightbox.min.css', array(), '1.0.0', 'all');
-    wp_enqueue_style( 'style-theme', get_stylesheet_uri() );
+	wp_enqueue_style( 'animate_main_css', get_template_directory_uri() . '/lib/animate/animate.min.css', array(), '1.0.0', 'all' );
 
-    // Calling JS
-    wp_enqueue_script( 'jquery-js', '//code.jquery.com/jquery-3.4.1.min.js' );
-    wp_enqueue_script( 'js-jsdelivr', '//cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js' );
-    wp_enqueue_script( 'js-wow2', get_template_directory_uri() . '/lib/wow/wow.min.js', array('jquery'), '1.0.0', true );
-    wp_enqueue_script( 'js-wow', get_template_directory_uri() . '/lib/wow/wow.js', array('jquery'), '1.0.0', true );
-    wp_enqueue_script( 'js-easing', get_template_directory_uri() . '/lib/easing/easing.min.js', array('jquery'), '1.0.0', true );
-    wp_enqueue_script( 'js-waypoints', get_template_directory_uri() . '/lib/waypoints/waypoints.min.js', array('jquery'), '1.0.0', true );
-    wp_enqueue_script( 'js-counterup', get_template_directory_uri() . '/lib/counterup/counterup.min.js', array('jquery'), '1.0.0', true );
-    wp_enqueue_script( 'js-owlcarousel', get_template_directory_uri() . '/lib/owlcarousel/owl.carousel.min.js', array('jquery'), '1.0.0', true );
-    wp_enqueue_script( 'js-owlcarouse2', get_template_directory_uri() . '/lib/owlcarousel/owl.carousel.js', array('jquery'), '1.0.0', true );
-    wp_enqueue_script( 'js-isotope', get_template_directory_uri() . '/lib/isotope/isotope.pkgd.min.js', array('jquery'), '1.0.0', true );
-    wp_enqueue_script( 'js-lightbox', get_template_directory_uri() . '/lib/lightbox/js/lightbox.min.js', array('jquery'), '1.0.0', true );
-    wp_enqueue_script( 'main-js', get_template_directory_uri() . '/js/main.js', array('jquery'), '1.0.0', true );
+	wp_enqueue_style( 'owlcarousel', get_template_directory_uri() . '/lib/owlcarousel/assets/owl.carousel.min.css', array(), '1.0.0', 'all' );
 
-}   
-add_action('wp_enqueue_scripts', 'one_assets');
+	wp_enqueue_style( 'lightbox', get_template_directory_uri() . '/lib/lightbox/css/lightbox.min.css', array(), '1.0.0', 'all' );
+
+	wp_enqueue_style( 'bootstrap_main', get_template_directory_uri() . '/css/bootstrap.min.css', array(), '1.0.0', 'all' );
+
+	wp_enqueue_style( 'theme_default_css', get_template_directory_uri() . '/css/style.css', array(), '1.0.0', 'all' );
+
+	// Start Theme JS File
+
+	 wp_enqueue_script( 'js_main_1', get_template_directory_uri() . '/https://code.jquery.com/jquery-3.4.1.min.js', array('jquery'), '1.0.0', true );
+
+	 wp_enqueue_script( 'js_main_2', get_template_directory_uri() . '/https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js', array('jquery'), '1.0.0', true );
+
+	 wp_enqueue_script( 'js_main_3', get_template_directory_uri() . '/lib/wow/wow.min.js', array('jquery'), '1.0.0', true );
+
+	 wp_enqueue_script( 'js_main_4', get_template_directory_uri() . '/lib/easing/easing.min.js', array('jquery'), '1.0.0', true );
+
+	 wp_enqueue_script( 'js_main_5', get_template_directory_uri() . '/lib/waypoints/waypoints.min.js', array('jquery'), '1.0.0', true );
+
+	 wp_enqueue_script( 'js_main_6', get_template_directory_uri() . '/lib/counterup/counterup.min.js', array('jquery'), '1.0.0', true );
+
+	 wp_enqueue_script( 'js_main_7', get_template_directory_uri() . '/lib/owlcarousel/owl.carousel.min.js', array('jquery'), '1.0.0', true );
+
+	 wp_enqueue_script( 'js_main_8', get_template_directory_uri() . '/lib/isotope/isotope.pkgd.min.js', array('jquery'), '1.0.0', true );
+
+	 wp_enqueue_script( 'js_main_9', get_template_directory_uri() . '/lib/lightbox/js/lightbox.min.js', array('jquery'), '1.0.0', true );
+
+	 wp_enqueue_script( 'js_main_10', get_template_directory_uri() . '/js/main.js', array('jquery'), '1.0.0', true );
+
+}
+add_action('wp_enqueue_scripts','one_enqueue');
+
+
+
+// Registering Sidebar 
+function one_theme_widget_init(){
+	register_sidebar( array(
+		'name'          => __( 'Footer - Section 2', 'halim' ),
+        'id'            => 'footer2',
+        'description'   => __( 'Widgets in this area will be shown on Footer Section 2', 'one' ),
+        'before_widget' => '<div class="text-make-white">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h5>',
+        'after_title'   => '</h5>',
+	) );
+
+	register_sidebar( array(
+		'name'          => __( 'Bottom Footer - Section 2', 'halim' ),
+        'id'            => 'footer_bottom_1',
+        'description'   => __( 'Widgets in this area will be shown on Footer Bottom', 'one' ),
+        'before_widget' => '<div class="text-make-white">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h5>',
+        'after_title'   => '</h5>',
+	) );
+}
+add_action( 'widgets_init', 'one_theme_widget_init' );
+
+
+
+
+
+
+
+
+
+
+
+// ACF Option Page
+add_action('acf/init', 'my_acf_op_init');
+function my_acf_op_init() {
+
+    // Check function exists.
+    if( function_exists('acf_add_options_page') ) {
+
+        // Register options page.
+        $parent = acf_add_options_page(array(
+            'page_title'    => __('Theme General Settings'),
+            'menu_title'    => __('Theme Option'),
+            'menu_slug'     => 'theme-general-settings',
+            'capability'    => 'edit_posts',
+            'redirect'      => false
+        ));
+
+		// Add sub page.
+        $child = acf_add_options_page(array(
+            'page_title'  => __('Header Social'),
+            'menu_title'  => __(' Header Social'),
+            'parent_slug' => $parent['menu_slug'],
+        ));
+
+		// Add sub page.
+        $child = acf_add_options_page(array(
+            'page_title'  => __('Home Slider'),
+            'menu_title'  => __('Home Slider'),
+            'parent_slug' => $parent['menu_slug'],
+        ));
+
+		// Add sub page.
+        $child = acf_add_options_page(array(
+            'page_title'  => __('Counter Section'),
+            'menu_title'  => __('Counter Section'),
+            'parent_slug' => $parent['menu_slug'],
+        ));
+
+    }
+}
